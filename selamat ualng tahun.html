@@ -1,0 +1,1278 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>For My Favorite Person ❤️</title>
+
+    <style>
+        /* ========================================
+           1. PENGATURAN DASAR WEBSITE
+        ======================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #160b16;
+            color: #fff0f5;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --pink: #ff8fab;
+            --light-pink: #ffc2d1;
+            --dark-pink: #fb6f92;
+            --gold: #ffe5a3;
+            --background: #160b16;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* ========================================
+           2. BACKGROUND DAN ANIMASI HATI
+        ======================================== */
+
+        #hearts-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            color: var(--pink);
+            opacity: 0;
+            animation: floatHeart linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.65;
+            }
+
+            85% {
+                opacity: 0.65;
+            }
+
+            100% {
+                transform: translateY(-115vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ========================================
+           3. TAMPILAN UTAMA
+        ======================================== */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 2;
+
+            background:
+                radial-gradient(
+                    ellipse at top,
+                    #57243e 0%,
+                    transparent 60%
+                ),
+                linear-gradient(
+                    180deg,
+                    #160b16,
+                    #291020,
+                    #160b16
+                );
+        }
+
+        .small-title {
+            color: var(--gold);
+            letter-spacing: 5px;
+            font-size: 12px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .main-heart {
+            font-size: 75px;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s infinite;
+            filter: drop-shadow(
+                0 0 25px rgba(255, 105, 145, 0.6)
+            );
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.15);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.1);
+            }
+        }
+
+        h1 {
+            font-size: clamp(38px, 8vw, 76px);
+            line-height: 1.15;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            display: block;
+            color: var(--pink);
+            font-style: italic;
+        }
+
+        .hero-description {
+            max-width: 540px;
+            color: #e8cbd8;
+            line-height: 1.9;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* ========================================
+           4. TOMBOL
+        ======================================== */
+
+        .button {
+            display: inline-block;
+            border: 1px solid var(--pink);
+            background: linear-gradient(
+                135deg,
+                #fb6f92,
+                #c9184a
+            );
+            color: white;
+            padding: 15px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            text-decoration: none;
+            box-shadow: 0 0 25px rgba(251, 111, 146, 0.2);
+        }
+
+        .button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 35px rgba(251, 111, 146, 0.5);
+        }
+
+        .music-button {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 20;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #fb6f92;
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 0 20px #fb6f9255;
+        }
+
+        /* ========================================
+           5. HITUNG MUNDUR ULANG TAHUN
+        ======================================== */
+
+        .countdown-section {
+            position: relative;
+            z-index: 2;
+            padding: 90px 20px;
+            text-align: center;
+        }
+
+        .section-label {
+            color: var(--gold);
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: clamp(30px, 6vw, 48px);
+            font-weight: normal;
+            color: var(--light-pink);
+            margin-bottom: 18px;
+        }
+
+        .section-description {
+            color: #d7b7c8;
+            max-width: 550px;
+            margin: 0 auto 35px;
+            line-height: 1.8;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            width: 105px;
+            padding: 22px 10px;
+            border: 1px solid #fb6f9255;
+            border-radius: 18px;
+            background: #ffffff08;
+            backdrop-filter: blur(10px);
+        }
+
+        .time-box strong {
+            display: block;
+            color: var(--pink);
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .time-box span {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #e8cbd8;
+            text-transform: uppercase;
+        }
+
+        /* ========================================
+           6. KARTU SURAT CINTA
+        ======================================== */
+
+        .letter-section {
+            position: relative;
+            z-index: 2;
+            padding: 70px 20px 100px;
+            text-align: center;
+        }
+
+        .letter-card {
+            max-width: 650px;
+            margin: 35px auto 0;
+            padding: 35px;
+            background: linear-gradient(
+                145deg,
+                #3b1c30,
+                #241020
+            );
+            border: 1px solid #fb6f9255;
+            border-radius: 24px;
+            box-shadow: 0 20px 70px #00000035;
+        }
+
+        .envelope {
+            font-size: 65px;
+            margin-bottom: 20px;
+        }
+
+        .letter-content {
+            display: none;
+            text-align: left;
+            color: #f5dce7;
+            line-height: 2;
+            margin-top: 25px;
+            white-space: pre-line;
+            animation: fadeIn 1s ease;
+        }
+
+        .letter-content.show {
+            display: block;
+        }
+
+        .letter-content .signature {
+            color: var(--pink);
+            font-style: italic;
+            font-size: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========================================
+           7. GALERI KENANGAN
+        ======================================== */
+
+        .memories-section {
+            position: relative;
+            z-index: 2;
+            padding: 70px 20px 100px;
+            text-align: center;
+        }
+
+        .memory-grid {
+            max-width: 900px;
+            margin: 35px auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .memory-card {
+            min-height: 190px;
+            border: 1px solid #fb6f9255;
+            border-radius: 20px;
+            padding: 25px 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(
+                145deg,
+                #49233c,
+                #241020
+            );
+            transition: 0.3s;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--pink);
+        }
+
+        .memory-card .emoji {
+            font-size: 40px;
+        }
+
+        .memory-card h3 {
+            font-weight: normal;
+            color: var(--light-pink);
+            font-size: 19px;
+        }
+
+        .memory-card p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #d7b7c8;
+        }
+
+        /* ========================================
+           8. KEJUTAN ULANG TAHUN
+        ======================================== */
+
+        .surprise-section {
+            position: relative;
+            z-index: 2;
+            padding: 80px 20px 110px;
+            text-align: center;
+            background: radial-gradient(
+                ellipse at center,
+                #4b203b,
+                transparent 75%
+            );
+        }
+
+        .surprise-message {
+            display: none;
+            max-width: 600px;
+            margin: 30px auto 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .surprise-message.show {
+            display: block;
+        }
+
+        .surprise-message h3 {
+            font-size: clamp(28px, 6vw, 42px);
+            color: var(--pink);
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        .surprise-message p {
+            line-height: 2;
+            color: #f5dce7;
+        }
+
+        .cake {
+            font-size: 85px;
+            margin: 20px 0;
+            animation: heartbeat 2s infinite;
+        }
+
+        /* ========================================
+           9. FOOTER
+        ======================================== */
+
+        footer {
+            position: relative;
+            z-index: 2;
+            padding: 35px 20px;
+            text-align: center;
+            border-top: 1px solid #fb6f9222;
+            color: #d7b7c8;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        footer span {
+            color: var(--pink);
+        }
+
+        /* ========================================
+           10. EFEK CONFETTI
+        ======================================== */
+
+        .confetti {
+            position: fixed;
+            top: -20px;
+            z-index: 50;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ========================================
+           11. RESPONSIVE UNTUK HP
+        ======================================== */
+
+        @media (max-width: 600px) {
+            .small-title {
+                letter-spacing: 3px;
+                font-size: 10px;
+            }
+
+            .main-heart {
+                font-size: 60px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .time-box {
+                width: 75px;
+                padding: 17px 5px;
+            }
+
+            .time-box strong {
+                font-size: 27px;
+            }
+
+            .time-box span {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+
+            .letter-card {
+                padding: 25px 20px;
+            }
+
+            .memory-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .memory-card {
+                min-height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TEMPAT ANIMASI HATI -->
+    <div id="hearts-container"></div>
+
+    <!-- TOMBOL MUSIK -->
+    <button
+        class="music-button"
+        id="musicButton"
+        onclick="toggleMusic()"
+        aria-label="Putar atau hentikan musik"
+    >
+        ♫
+    </button>
+
+    <!-- ========================================
+         BAGIAN 1: HALAMAN PEMBUKA
+    ======================================== -->
+
+    <section class="hero">
+
+        <p class="small-title">
+            A little surprise for someone special
+        </p>
+
+        <div class="main-heart">
+            ❤️
+        </div>
+
+        <h1>
+            Happy Birthday,
+            <span id="heroName">My Love</span>
+        </h1>
+
+        <p class="hero-description">
+            Untuk seseorang yang kehadirannya membuat
+            dunia terasa lebih indah. Hari ini mungkin
+            tentang bertambahnya usiamu, tetapi bagiku
+            setiap hari bersamamu adalah hadiah.
+        </p>
+
+        <a href="#countdown" class="button">
+            Buka Hadiah Kecilku ❤️
+        </a>
+
+    </section>
+
+    <!-- ========================================
+         BAGIAN 2: COUNTDOWN
+    ======================================== -->
+
+    <section
+        class="countdown-section"
+        id="countdown"
+    >
+
+        <p class="section-label">
+            Save this special date
+        </p>
+
+        <h2 class="section-title">
+            16 Oktober 2026
+        </h2>
+
+        <p
+            class="section-description"
+            id="countdownMessage"
+        >
+            Menuju hari spesial seseorang yang
+            paling aku sayangi.
+        </p>
+
+        <div class="countdown">
+
+            <div class="time-box">
+                <strong id="days">00</strong>
+                <span>Hari</span>
+            </div>
+
+            <div class="time-box">
+                <strong id="hours">00</strong>
+                <span>Jam</span>
+            </div>
+
+            <div class="time-box">
+                <strong id="minutes">00</strong>
+                <span>Menit</span>
+            </div>
+
+            <div class="time-box">
+                <strong id="seconds">00</strong>
+                <span>Detik</span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================
+         BAGIAN 3: SURAT CINTA
+    ======================================== -->
+
+    <section class="letter-section">
+
+        <p class="section-label">
+            From my heart
+        </p>
+
+        <h2 class="section-title">
+            Ada Surat Untukmu 💌
+        </h2>
+
+        <p class="section-description">
+            Ada beberapa hal yang terkadang sulit
+            aku ucapkan secara langsung.
+        </p>
+
+        <div class="letter-card">
+
+            <div class="envelope">
+                💌
+            </div>
+
+            <h3 style="font-weight: normal;">
+                To: My Favorite Person
+            </h3>
+
+            <p
+                style="
+                    color: #d7b7c8;
+                    margin: 15px 0 25px;
+                    line-height: 1.8;
+                "
+            >
+                Sebuah surat kecil, dengan perasaan
+                yang begitu besar.
+            </p>
+
+            <button
+                class="button"
+                id="letterButton"
+                onclick="openLetter()"
+            >
+                Buka Surat Cintaku
+            </button>
+
+            <div
+                class="letter-content"
+                id="letterContent"
+            >Untuk kamu, orang kesayanganku ❤️
+
+Selamat ulang tahun, sayangku.
+
+Di tanggal 16 Oktober ini,
+adek mau abang tahu satu hal:
+adek bersyukur karena semesta
+pernah mempertemukan kita.
+
+Terima kasih sudah hadir dalam hidup adek ya.
+Terima kasih untuk senyum tulus abang,
+cerita panjang abang, perhatian abang, dan hal-hal kecil
+yang mungkin gak abang sadari,
+tetapi selalu berarti buat adek.
+
+Adek gak bisa menjanjikan bahwa
+setiap hari kita akan selalu mudah.
+Tapi, adek mau terus belajar
+memahami abang, menghargai abang,
+dan menemani abang bertumbuh.
+
+Semoga di umur abang yang baru ini,
+abang semakin bahagia,
+semakin dekat dengan semua impian abang,
+selalu dikelilingi orang-orang baik,
+dan selalu punya alasan untuk tersenyum.
+
+Kalau suatu hari dunia terasa berat,
+ingatlah bahwa abang berharga.
+abang pantas dicintai,
+dihargai, dan diperlakukan dengan baik.
+
+Dan jika abang mengizinkan,
+adek mau jadi salah satu orang
+yang selalu mengingatkan abang tentang itu.
+
+Selamat ulang tahun, cintaku.
+Semoga banyak hal indah
+menemukan jalannya menuju abang.
+
+Adek sayang abang,
+lebih dari yang bisa adek tuliskan
+di surat kecil ini
+I love you more abanghhh. ❤️
+
+                <br><br>
+
+                <span class="signature">
+                    With all my love,
+                    <span id="letterSender">
+                        Your Favorite Person
+                    </span>
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================
+         BAGIAN 4: HAL-HAL YANG AKU SUKAI
+    ======================================== -->
+
+    <section class="memories-section">
+
+        <p class="section-label">
+            Little things about you
+        </p>
+
+        <h2 class="section-title">
+            Kenapa Kamu Begitu Spesial?
+        </h2>
+
+        <p class="section-description">
+            Bukan cuma satu alasan.
+            Ada banyak hal kecil tentangmu
+            yang membuatku jatuh cinta.
+        </p>
+
+        <div class="memory-grid">
+
+            <div class="memory-card">
+
+                <div class="emoji">
+                    🌷
+                </div>
+
+                <h3>Senyummu</h3>
+
+                <p>
+                    Hal sederhana yang bisa
+                    membuat hariku terasa lebih baik.
+                </p>
+
+            </div>
+
+            <div class="memory-card">
+
+                <div class="emoji">
+                    🫶
+                </div>
+
+                <h3>Kehadiranmu</h3>
+
+                <p>
+                    Tidak harus selalu melakukan
+                    sesuatu. Ada kamu saja sudah berarti.
+                </p>
+
+            </div>
+
+            <div class="memory-card">
+
+                <div class="emoji">
+                    ✨
+                </div>
+
+                <h3>Dirimu Sendiri</h3>
+
+                <p>
+                    Aku suka kamu bukan karena
+                    kamu sempurna, tetapi karena kamu
+                    adalah kamu.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================
+         BAGIAN 5: KEJUTAN TERAKHIR
+    ======================================== -->
+
+    <section class="surprise-section">
+
+        <p class="section-label">
+            One last thing
+        </p>
+
+        <h2 class="section-title">
+            Aku Punya Satu Kejutan Lagi...
+        </h2>
+
+        <p class="section-description">
+            Jangan buru-buru pergi.
+            Ada satu hal terakhir yang ingin
+            aku sampaikan khusus untukmu.
+        </p>
+
+        <button
+            class="button"
+            id="surpriseButton"
+            onclick="openSurprise()"
+        >
+            Klik Kalau Abang Sayang Adek ❤️
+        </button>
+
+        <div
+            class="surprise-message"
+            id="surpriseMessage"
+        >
+
+            <div class="cake">
+                🎂
+            </div>
+
+            <h3>
+                Happy Birthday, Sayangku!
+            </h3>
+
+            <p>
+                Selamat bertambah usia,
+                manusia favorit Adek.
+
+                Semoga semua doa baik yang
+                abang simpan diam-diam
+                satu per satu menjadi nyata.
+
+                Semoga abang selalu sehat,
+                bahagia, dikelilingi cinta,
+                dan tidak pernah lupa
+                betapa berharganya diri abang.
+
+                Terima kasih sudah menjadi
+                bagian indah dalam hidup adek.
+
+                Hari ini adalah hari abang.
+                Jadi, tersenyumlah sebanyak mungkin,
+                karena abang pantas mendapatkan
+                semua kebahagiaan di dunia ini.
+
+                <br><br>
+
+                <strong style="color: #ff8fab;">
+                    I love you, today and always. ❤️
+                </strong>
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ========================================
+         BAGIAN 6: PENUTUP
+    ======================================== -->
+
+    <footer>
+
+        Dibuat dengan sepenuh hati
+        <span>❤️</span>
+        untuk seseorang yang istimewa.
+
+        <br>
+
+        16 Oktober 2026
+
+        <br>
+
+        <span id="footerName">
+            Forever yours.
+        </span>
+
+    </footer>
+
+    <!-- ========================================
+         JAVASCRIPT
+    ======================================== -->
+
+    <script>
+
+        /* ========================================
+           A. PERSONALISASI NAMA
+           
+           GANTI NAMA DI BAGIAN INI
+        ======================================== */
+
+        const namaPacar = "Eziii Jelekk";
+
+        const namaKamu = "Alin Cantikk";
+
+        document.getElementById("heroName").textContent =
+            namaPacar;
+
+        document.getElementById("letterSender").textContent =
+            namaKamu;
+
+        document.getElementById("footerName").textContent =
+            "With love, " + namaKamu + " ❤️";
+
+
+        /* ========================================
+           B. HITUNG MUNDUR ULANG TAHUN
+
+           Tanggal: 16 Oktober 2026
+        ======================================== */
+
+        const birthday = new Date(
+            "2026-10-16T00:00:00+07:00"
+        ).getTime();
+
+        function updateCountdown() {
+
+            const now = Date.now();
+
+            const distance = birthday - now;
+
+            const countdownMessage =
+                document.getElementById("countdownMessage");
+
+            if (distance <= 0) {
+
+                document.getElementById("days").textContent = "00";
+
+                document.getElementById("hours").textContent = "00";
+
+                document.getElementById("minutes").textContent = "00";
+
+                document.getElementById("seconds").textContent = "00";
+
+                countdownMessage.textContent =
+                    "Hari spesialnya sudah tiba! Selamat ulang tahun, " +
+                    namaPacar + " ❤️";
+
+                return;
+            }
+
+            const days = Math.floor(
+                distance / (1000 * 60 * 60 * 24)
+            );
+
+            const hours = Math.floor(
+                (distance / (1000 * 60 * 60)) % 24
+            );
+
+            const minutes = Math.floor(
+                (distance / (1000 * 60)) % 60
+            );
+
+            const seconds = Math.floor(
+                (distance / 1000) % 60
+            );
+
+            document.getElementById("days").textContent =
+                String(days).padStart(2, "0");
+
+            document.getElementById("hours").textContent =
+                String(hours).padStart(2, "0");
+
+            document.getElementById("minutes").textContent =
+                String(minutes).padStart(2, "0");
+
+            document.getElementById("seconds").textContent =
+                String(seconds).padStart(2, "0");
+
+        }
+
+        updateCountdown();
+
+        setInterval(updateCountdown, 1000);
+
+
+        /* ========================================
+           C. ANIMASI HATI MELAYANG
+        ======================================== */
+
+        function createHeart() {
+
+            const container =
+                document.getElementById("hearts-container");
+
+            const heart = document.createElement("div");
+
+            heart.className = "heart";
+
+            const hearts = ["❤️", "💕", "💗", "💖", "♡"];
+
+            heart.textContent =
+                hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left = Math.random() * 100 + "%";
+
+            heart.style.fontSize =
+                (Math.random() * 18 + 12) + "px";
+
+            heart.style.animationDuration =
+                (Math.random() * 6 + 7) + "s";
+
+            container.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 14000);
+
+        }
+
+        setInterval(createHeart, 600);
+
+
+        /* ========================================
+           D. MEMBUKA SURAT CINTA
+        ======================================== */
+
+        function openLetter() {
+
+            const letter =
+                document.getElementById("letterContent");
+
+            const button =
+                document.getElementById("letterButton");
+
+            letter.classList.toggle("show");
+
+            if (letter.classList.contains("show")) {
+
+                button.textContent = "Tutup Surat ❤️";
+
+            } else {
+
+                button.textContent = "Buka Surat Cintaku";
+
+            }
+
+        }
+
+
+        /* ========================================
+           E. KEJUTAN DAN CONFETTI
+        ======================================== */
+
+        function openSurprise() {
+
+            const message =
+                document.getElementById("surpriseMessage");
+
+            const button =
+                document.getElementById("surpriseButton");
+
+            message.classList.add("show");
+
+            button.textContent = "Kejutan untuk " + namaPacar + " ❤️";
+
+            button.disabled = true;
+
+            button.style.opacity = "0.8";
+
+            createConfetti();
+
+            message.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+        function createConfetti() {
+
+            const symbols = [
+                "❤️",
+                "💖",
+                "💕",
+                "✨",
+                "🌸",
+                "🎉"
+            ];
+
+            for (let i = 0; i < 70; i++) {
+
+                const piece = document.createElement("div");
+
+                piece.className = "confetti";
+
+                piece.textContent =
+                    symbols[Math.floor(Math.random() * symbols.length)];
+
+                piece.style.left = Math.random() * 100 + "vw";
+
+                piece.style.fontSize =
+                    (Math.random() * 16 + 12) + "px";
+
+                piece.style.animationDuration =
+                    (Math.random() * 3 + 3) + "s";
+
+                piece.style.animationDelay =
+                    Math.random() * 2 + "s";
+
+                document.body.appendChild(piece);
+
+                setTimeout(() => {
+                    piece.remove();
+                }, 8000);
+
+            }
+
+        }
+
+
+        /* ========================================
+           F. MUSIK LATAR SEDERHANA
+           
+           Musik dibuat menggunakan Web Audio API.
+           Klik tombol musik untuk memulai.
+        ======================================== */
+
+        let audioContext = null;
+
+        let musicPlaying = false;
+
+        let musicTimer = null;
+
+        let noteIndex = 0;
+
+        const melody = [
+            261.63,
+            329.63,
+            392.00,
+            329.63,
+            293.66,
+            349.23,
+            392.00,
+            349.23,
+            261.63,
+            329.63,
+            392.00,
+            440.00,
+            392.00,
+            349.23,
+            329.63,
+            293.66
+        ];
+
+        function playNote(frequency) {
+
+            if (!audioContext || !musicPlaying) {
+                return;
+            }
+
+            const oscillator =
+                audioContext.createOscillator();
+
+            const gain =
+                audioContext.createGain();
+
+            oscillator.type = "sine";
+
+            oscillator.frequency.value = frequency;
+
+            gain.gain.setValueAtTime(
+                0.0001,
+                audioContext.currentTime
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.06,
+                audioContext.currentTime + 0.08
+            );
+
+            gain.gain.exponentialRampToValueAtTime(
+                0.0001,
+                audioContext.currentTime + 0.65
+            );
+
+            oscillator.connect(gain);
+
+            gain.connect(audioContext.destination);
+
+            oscillator.start();
+
+            oscillator.stop(
+                audioContext.currentTime + 0.7
+            );
+
+        }
+
+        async function toggleMusic() {
+
+            const button =
+                document.getElementById("musicButton");
+
+            if (!audioContext) {
+
+                const AudioContextClass =
+                    window.AudioContext ||
+                    window.webkitAudioContext;
+
+                if (!AudioContextClass) {
+
+                    alert(
+                        "Browser kamu tidak mendukung fitur musik ini."
+                    );
+
+                    return;
+                }
+
+                audioContext = new AudioContextClass();
+
+            }
+
+            if (audioContext.state === "suspended") {
+                await audioContext.resume();
+            }
+
+            musicPlaying = !musicPlaying;
+
+            if (musicPlaying) {
+
+                button.textContent = "❚❚";
+
+                playNote(melody[noteIndex]);
+
+                noteIndex = (noteIndex + 1) % melody.length;
+
+                musicTimer = setInterval(() => {
+
+                    playNote(melody[noteIndex]);
+
+                    noteIndex =
+                        (noteIndex + 1) % melody.length;
+
+                }, 550);
+
+            } else {
+
+                button.textContent = "♫";
+
+                clearInterval(musicTimer);
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
